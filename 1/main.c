@@ -68,7 +68,7 @@ main() {
 			scanf("%lf", &ygol1);
 			result1 = area_trapezoid1(h,b,ygol);
 			result2 = area_trapezoid2(h1, b1, ygol1);
-			result3 = fabs(result1-result2);
+			result3 = result1-result2;
 			printf("Площадь первой трапеции равна %.2lf\n", result1);
 			printf("Площадь второй трапеции равна %.2lf\n", result2);
 			if (result3 > 0) {
@@ -78,7 +78,7 @@ main() {
 				printf("Первая и вторая трапеции равны, их площадь равна %.2lf\n\n", result1);
 			}
 			else {
-				printf("Вторая трапеция больше первой на %.2lf\n\n", result3);
+				printf("Вторая трапеция больше первой на %.2lf\n\n", -result3);
 			}
 			continue;
 		}

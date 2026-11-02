@@ -53,10 +53,10 @@ main() {
 		case 3: {
 			draw(symbol, h, b, ygol);
 			continue;
+		}
 		case 4: {
 			draw1(symbol1, h, b, ygol);
 			continue;
-		}
 		}
 		case 5: {
 			printf("\n\n----- Введите данные для второй трапеции -----\n");

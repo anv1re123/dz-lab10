@@ -14,7 +14,7 @@ int main()
     int z;
     int x, y;
     int x2, y2;
-    char symbol;
+    char symbol, symbol1= '*' ;
 
     printf("----- Введите данные для фигуры -----\n");
     printf("Введите символ для построения фигуры: ");
@@ -59,7 +59,7 @@ int main()
 
         case 4:
             printf("\n----- ЗАДАННАЯ ФИГУРА -----\n");
-            draw_figure('*', x, y);
+            draw_figure(symbol1, x, y);
             break;
 
         case 5:
@@ -112,7 +112,8 @@ float area_figure(int x, int y)
     int lower_w1 = x;
     int lower_w2 = x - 2;
     int h = y / 2;
-    return lower_w1* h + lower_w2 * h;
+    float res;
+    return res = lower_w1* h + lower_w2 * h;
 }
 
 

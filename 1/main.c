@@ -53,12 +53,12 @@ int main()
             break;
 
         case 3:
-            printf("\n----- РИСОВАНИЕ ФИГУРЫ -----\n");
+            printf("\n----- ЗАДАННАЯ ФИГУРА -----\n");
             draw_figure(symbol, x, y);
             break;
 
         case 4:
-            printf("\n----- РИСОВАНИЕ ФИГУРЫ -----\n");
+            printf("\n----- ЗАДАННАЯ ФИГУРА -----\n");
             draw_figure('*', x, y);
             break;
 

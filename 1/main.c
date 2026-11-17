@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <locale.h>
+#include <math.h>
 
 float area_figure(int x, int y);
 void definition_figure(void);
@@ -17,12 +18,17 @@ int main()
     char symbol, symbol1 = '*';
 
     printf("----- Введите данные для фигуры -----\n");
-    printf("Введите символ для построения фигуры: ");
-    scanf(" %c", &symbol);
     printf("Введите ширину фигуры по X: ");
     scanf("%d", &x);
     printf("Введите высоту фигуры по Y: ");
     scanf("%d", &y);
+    printf("\n----- ПРОВЕРКА ТОЧКИ -----\n");
+    if (check_parameters(x, y) == 1) {
+        printf("Точка (%d; %d) принадлежит области (Результат: 1).\n", x, y);
+    }
+    else {
+        printf("Точка (%d; %d) НЕ принадлежит области (Результат: 0). \n", x, y);
+    }
 
     do
     {
@@ -54,6 +60,8 @@ int main()
 
         case 3:
             printf("\n----- ЗАДАННАЯ ФИГУРА -----\n");
+            printf("Введите символ для построения фигуры: ");
+            scanf(" %c", &symbol);
             draw_figure(symbol, x, y);
             break;
 
@@ -93,16 +101,6 @@ int main()
             printf("Высота нижней части: %d\n", y);
             break;
 
-        case 7:
-            printf("\n----- ПРОВЕРКА ТОЧКИ -----\n");
-            if (check_parameters(x, y) == 1) {
-                printf("Точка (%d; %d) принадлежит области (Результат: 1).\n", x, y);
-            }
-            else {
-                printf("Точка (%d; %d) НЕ принадлежит области (Результат: 0).\n", x, y);
-            }
-            break;
-
         case 0:
             printf("\nПрограмма завершена.\n");
             break;
@@ -128,18 +126,18 @@ float area_figure(int x, int y)
 void definition_figure(void)
 {
     printf("\n----- ОПРЕДЕЛЕНИЕ ФИГУРЫ -----\n");
-    printf("Фигура представляет собой L-образный невыпуклый шестиугольник,\n");
+    printf("Фигура представляет собой Г-образный невыпуклый шестиугольник,\n");
     printf("Её граница состоит из 6 последовательных отрезков.\n");
     printf("Верхняя часть шире нижней.\n");
 }
 
 void draw_figure(char symbol, int x, int y)
 {
-    int upper_w = x;
-    int lower_w = x - 2;
-    int h = y / 2;
+    int upper_w = abs(x)+2;
+    int lower_w = upper_w - 2;
+    int h = abs(y) / 2;
 
-    for (int i = 0; i < y; i++)
+    for (int i = 0; i < abs(y); i++)
     {
         int w;
         if (i < h)
@@ -149,12 +147,13 @@ void draw_figure(char symbol, int x, int y)
 
         for (int j = 0; j < w; j++)
         {
-            printf("%c", symbol);
+            printf(" %c", symbol);
         }
 
         printf("\n");
     }
 }
+
 
 float compare_figure(int x1, int y1, int x2, int y2)
 {
@@ -168,3 +167,4 @@ int check_parameters(int x, int y) {
     }
     return 0;
 }
+

@@ -41,8 +41,6 @@
 
 Программа написана на языке **C++**.
 ```cpp
-
-
 #include <stdio.h>
 #include <locale.h>
 
@@ -50,6 +48,7 @@ float area_figure(int x, int y);
 void definition_figure(void);
 void draw_figure(char symbol, int x, int y);
 float compare_figure(int x1, int y1, int x2, int y2);
+int check_parameters(int x, int y);
 
 int main()
 {
@@ -58,7 +57,7 @@ int main()
     int z;
     int x, y;
     int x2, y2;
-    char symbol;
+    char symbol, symbol1 = '*';
 
     printf("----- Введите данные для фигуры -----\n");
     printf("Введите символ для построения фигуры: ");
@@ -79,6 +78,7 @@ int main()
         printf("4) Нарисовать фигуру символом *\n");
         printf("5) Сравнить площадь с другой фигурой\n");
         printf("6) Вывести параметры фигуры\n");
+        printf("7) Проверить можно ли построить фигуру с заданными координатами! (1 - да, 0 - нет)\n");
         printf("0) Выйти\n");
         printf("Выберите операцию: ");
 
@@ -88,8 +88,7 @@ int main()
         {
         case 1:
             printf("\n----- ПЛОЩАДЬ ФИГУРЫ -----\n");
-            printf("Площадь фигуры: %.2f\n",
-                area_figure(x, y));
+            printf("Площадь фигуры: %.2f\n", area_figure(x, y));
             break;
 
         case 2:
@@ -103,7 +102,7 @@ int main()
 
         case 4:
             printf("\n----- ЗАДАННАЯ ФИГУРА -----\n");
-            draw_figure('*', x, y);
+            draw_figure(symbol1, x, y);
             break;
 
         case 5:
@@ -133,8 +132,18 @@ int main()
             printf("Ширина по X: %d\n", x);
             printf("Высота по Y: %d\n", y);
             printf("Ширина нижней части: %d\n", x - 2);
-            printf("Высота верхней части: %d\n", y) ;
+            printf("Высота верхней части: %d\n", y);
             printf("Высота нижней части: %d\n", y);
+            break;
+
+        case 7:
+            printf("\n----- ПРОВЕРКА ТОЧКИ -----\n");
+            if (check_parameters(x, y) == 1) {
+                printf("Точка (%d; %d) принадлежит области (Результат: 1).\n", x, y);
+            }
+            else {
+                printf("Точка (%d; %d) НЕ принадлежит области (Результат: 0).\n", x, y);
+            }
             break;
 
         case 0:
@@ -150,15 +159,14 @@ int main()
     return 0;
 }
 
-
 float area_figure(int x, int y)
 {
     int lower_w1 = x;
     int lower_w2 = x - 2;
     int h = y / 2;
-    return lower_w1* h + lower_w2 * h;
+    float res;
+    return res = lower_w1 * h + lower_w2 * h;
 }
-
 
 void definition_figure(void)
 {
@@ -167,7 +175,6 @@ void definition_figure(void)
     printf("Её граница состоит из 6 последовательных отрезков.\n");
     printf("Верхняя часть шире нижней.\n");
 }
-
 
 void draw_figure(char symbol, int x, int y)
 {
@@ -192,10 +199,17 @@ void draw_figure(char symbol, int x, int y)
     }
 }
 
-
 float compare_figure(int x1, int y1, int x2, int y2)
 {
     return area_figure(x1, y1) - area_figure(x2, y2);
+}
+
+int check_parameters(int x, int y) {
+    if ((x >= -6 && x <= -3 && y >= -3 && y <= 7) ||
+        (y >= 2 && y <= 7 && x >= -3 && x <= -1)) {
+        return 1;
+    }
+    return 0;
 }
 
 
